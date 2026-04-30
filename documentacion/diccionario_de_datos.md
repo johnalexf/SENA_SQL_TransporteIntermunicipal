@@ -86,8 +86,8 @@
 | PK | id_recorrido | INT | 10 | NO | SI | SI | |
 | FK | id_coche_recorrido | INT | 10 | NO | NO | NO | |
 | FK | id_conductor_recorrido | INT | 10 | NO | NO | NO | |
-| FK | id_lugar_salida_recorrido | INT | 10 | NO | NO | NO | Relacion con el id_oficina de la tabla oficina |
-| FK | id_lugar_destino_recorrido | INT | 10 | NO | NO | NO | Relacion con el id_oficina de la tabla oficina |
+| FK | id_lugar_salida_recorrido | INT | 10 | NO | NO | NO | Relacion con el id_lugar de la tabla lugares |
+| FK | id_lugar_destino_recorrido | INT | 10 | NO | NO | NO | Relacion con el id_lugar de la tabla lugares |
 | | km_recorridos | INT | 4 | SI | NO | NO | |
 | FK | id_tipo_recorrido | INT | 10 | NO | NO | NO | |
 
@@ -119,6 +119,16 @@
 | PK | id_tipo_recorrido | INT | 10 | NO | SI | SI | |
 | | nombre_tipo_recorrido | STRING | 50 | NO | SI | NO | |
 
+
+### Tabla: lugares
+
+| Llave | Nombre | Tipo Variable | tamaño Variable | Null | Unico | Auto Incremen | Observaciones |
+|---|---|---|---|---|---|---|---|
+| PK | id_lugar | INT | 10 | NO | SI | SI | |
+| | nombre_lugar | STRING | 50 | NO | SI | NO | |
+| FK | id_ciudad_lugar | INT | 10 | NO | NO | NO | |
+| FK | id_departamento_lugar | INT | 10 | NO | NO | NO | |
+|  | direccion_lugar | STRING | 100 | NO | NO | NO | |
 ---
 
 ## Tablas Fijas (Catálogos)
