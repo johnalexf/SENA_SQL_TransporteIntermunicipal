@@ -75,3 +75,43 @@ CREATE TABLE coches(
     FOREIGN KEY (id_tipo_combustible_coche) REFERENCES tipo_combustible(id_tipo_combustible),
     FOREIGN KEY (id_oficina_coche) REFERENCES oficinas(id_oficina)
 );
+
+CREATE TABLE tipo_documento(
+    id_tipo_documento INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_tipo_documento VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE conductor(
+    id_conductor INT PRIMARY KEY AUTO_INCREMENT,
+    primer_nombre_conductor VARCHAR(30) NOT NULL,
+    segundo_nombre_conductor VARCHAR(30) NULL,
+    primer_apellido_conductor VARCHAR(30) NOT NULL,
+    segundo_apellido_conductor VARCHAR(30) NULL,
+    id_tipo_documento_conductor INT NOT NULL,
+    documento_identidad_conductor VARCHAR(11) NOT NULL UNIQUE,
+    direccion_conductor VARCHAR(100) NOT NULL UNIQUE,
+    telefono_conductor VARCHAR(10) NOT NULL UNIQUE,
+
+    FOREIGN KEY (id_tipo_documento_conductor) REFERENCES tipo_documento(id_tipo_documento)
+);
+
+CREATE TABLE tipo_recorrido(
+    id_tipo_recorrido INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_tipo_recorrido VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE recorridos(
+    id_recorridos INT PRIMARY KEY AUTO_INCREMENT,
+    id_coche_recorrido INT NOT NULL,
+    id_conductor_recorrido INT NOT NULL,
+    id_lugar_salida_recorrido INT NOT NULL,
+    id_lugar_destino_recorrido INT NOT NULL,
+    km_recorridos INT NULL,
+    id_tipo_recorrido INT NOT NULL,
+
+    FOREIGN KEY (id_coche_recorrido) REFERENCES coches(id_coche),
+    FOREIGN KEY (id_conductor_recorrido) REFERENCES conductor(id_conductor),
+    FOREIGN KEY (id_lugar_salida_recorrido) REFERENCES oficinas(id_oficina),
+    FOREIGN KEY (id_lugar_destino_recorrido) REFERENCES oficinas(id_oficina),
+    FOREIGN KEY (id_tipo_recorrido) REFERENCES tipo_recorrido(id_tipo_recorrido) 
+);
