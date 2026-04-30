@@ -2,12 +2,14 @@ CREATE DATABASE db_transportadoraMunicipal;
 
 CREATE TABLE ciudades(
 	id_ciudad INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_ciudad VARCHAR(50) NOT NULL
+    nombre_ciudad VARCHAR(50) NOT NULL UNIQUE
 );
+
+--ALTER TABLE ciudades MODIFY nombre_ciudad VARCHAR(50) NOT NULL UNIQUE;
 
 CREATE TABLE departamentos(
 	id_departamentos INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_departamentos VARCHAR(50) NOT NULL
+    nombre_departamentos VARCHAR(50) NOT NULL UNIQUE
 );
 
 ALTER TABLE departamentos RENAME COLUMN id_departamentos TO id_departamento;
