@@ -100,6 +100,17 @@ CREATE TABLE tipo_recorrido(
     nombre_tipo_recorrido VARCHAR(50) NOT NULL UNIQUE
 );
 
+CREATE TABLE lugares(
+    id_lugar INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_lugar VARCHAR(50) NOT NULL UNIQUE,
+    id_ciudad_lugar INT NOT NULL,
+    id_departamento_lugar INT NOT NULL,
+    direccion_lugar VARCHAR(100) NOT NULL,
+
+    FOREIGN KEY (id_ciudad_lugar) REFERENCES ciudades(id_ciudad),
+    FOREIGN KEY (id_departamento_lugar) REFERENCES departamentos(id_departamento)
+);
+
 CREATE TABLE recorridos(
     id_recorridos INT PRIMARY KEY AUTO_INCREMENT,
     id_coche_recorrido INT NOT NULL,
@@ -111,7 +122,7 @@ CREATE TABLE recorridos(
 
     FOREIGN KEY (id_coche_recorrido) REFERENCES coches(id_coche),
     FOREIGN KEY (id_conductor_recorrido) REFERENCES conductor(id_conductor),
-    FOREIGN KEY (id_lugar_salida_recorrido) REFERENCES oficinas(id_oficina),
-    FOREIGN KEY (id_lugar_destino_recorrido) REFERENCES oficinas(id_oficina),
+    FOREIGN KEY (id_lugar_salida_recorrido) REFERENCES lugares(id_lugar),
+    FOREIGN KEY (id_lugar_destino_recorrido) REFERENCES lugares(id_lugar),
     FOREIGN KEY (id_tipo_recorrido) REFERENCES tipo_recorrido(id_tipo_recorrido) 
 );
