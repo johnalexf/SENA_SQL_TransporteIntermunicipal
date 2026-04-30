@@ -30,3 +30,48 @@ CREATE TABLE oficinas(
 
 ALTER TABLE oficinas CHANGE cod_postal_oficina cod_postal_oficina VARCHAR(6) NOT NULL;
 -- ALTER TABLE oficinas MODIFY cod_postal_oficina VARCHAR(6) NOT NULL;
+
+CREATE TABLE grupo(
+    id_grupo INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_grupo VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE tipo_vehiculo(
+    id_tipo_vehiculo INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_tipo_vehiculo VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE tipo_servicio(
+    id_tipo_servicio INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_tipo_servicio VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE marca(
+    id_marca INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_marca VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE tipo_combustible(
+    id_tipo_combustible INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_tipo_combustible VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE coches(
+    id_coche INT PRIMARY KEY AUTO_INCREMENT,
+    placa_coche VARCHAR(10) NOT NULL UNIQUE,
+    id_grupo_coche INT NOT NULL,
+    id_tipo_vehiculo_coche INT NOT NULL,
+    id_tipo_servicio_coche INT NOT NULL,
+    id_marca_coche INT NOT NULL,
+    modelo_coche INT(4) NOT NULL,
+    num_pasajeros_coche INT(2) NOT NULL,
+    id_tipo_combustible_coche INT NOT NULL,
+    id_oficina_coche INT NOT NULL,
+
+    FOREIGN KEY (id_grupo_coche) REFERENCES grupo(id_grupo),
+    FOREIGN KEY (id_tipo_vehiculo_coche) REFERENCES tipo_vehiculo(id_tipo_vehiculo),
+    FOREIGN KEY (id_tipo_servicio_coche) REFERENCES tipo_servicio(id_tipo_servicio),
+    FOREIGN KEY (id_marca_coche) REFERENCES marca(id_marca),
+    FOREIGN KEY (id_tipo_combustible_coche) REFERENCES tipo_combustible(id_tipo_combustible),
+    FOREIGN KEY (id_oficina_coche) REFERENCES oficinas(id_oficina)
+);
